@@ -12,6 +12,8 @@ I grew up listening to drum & bass as teen in the 90s. Its stuck with me ever si
 
 Type what you hear. Get audio back. It's that simple.
 
+![The Resonator UI](assets/ui.png)
+
 ## What Is This?
 
 The Resonator is a full-stack generative audio application built on Meta's MusicGen model. Describe the sound in your head, and it generates audio. Apply "Brain Tickler" effects for that extra punch. Use AI-powered stem separation and denoising for post-processing.
