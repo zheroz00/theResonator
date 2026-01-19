@@ -1,0 +1,11 @@
+torch
+torchaudio
+# Install audiocraft from GitHub for latest compatibility fixes
+git+https://github.com/facebookresearch/audiocraft.git
+# Pin transformers to work with torch 2.1.0
+transformers>=4.31.0,<4.40.0
+fastapi
+uvicorn
+pydantic
+scipy
+pedalboard==0.8.9

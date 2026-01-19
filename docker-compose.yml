@@ -1,0 +1,56 @@
+services:
+  # Legacy backend (original monolithic server.py)
+  # Uncomment to run the original backend instead of the new modular one
+  # musicgen:
+  #   build: .
+  #   container_name: musicgen-local
+  #   restart: unless-stopped
+  #   environment:
+  #     - XFORMERS_DISABLED=1
+  #   ports:
+  #     - "6000:5000"
+  #   volumes:
+  #     - ./generated_music:/app/output
+  #     - ./model_cache:/root/.cache
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
+
+  # New modular backend
+  backend:
+    build: ./backend
+    container_name: resonator-backend
+    restart: unless-stopped
+    environment:
+      - XFORMERS_DISABLED=1
+      - CORS_ORIGINS=http://localhost:6001
+    ports:
+      - "6000:5000"
+    volumes:
+      - ./generated_music:/app/output
+      - ./model_cache:/root/.cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  # React frontend
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - VITE_OPENROUTER_API_KEY=${VITE_OPENROUTER_API_KEY:-}
+        - VITE_OPENROUTER_MODEL=${VITE_OPENROUTER_MODEL:-anthropic/claude-3-haiku}
+    container_name: resonator-frontend
+    restart: unless-stopped
+    ports:
+      - "6001:80"
+    depends_on:
+      - backend
