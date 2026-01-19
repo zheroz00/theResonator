@@ -37,7 +37,7 @@ curl http://localhost:6000/health
 ## Project Structure
 
 ```
-musicgen-server/
+theResonator/
 ├── backend/                 # Modular FastAPI backend
 │   ├── app/
 │   │   ├── main.py          # FastAPI app with CORS

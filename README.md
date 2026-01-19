@@ -36,8 +36,8 @@ The Resonator is a full-stack generative audio application built on Meta's Music
 
 ```bash
 # Clone the repo
-git clone https://github.com/zheroz00/musicgen-server.git
-cd musicgen-server
+git clone https://github.com/zheroz00/theResonator.git
+cd theResonator
 
 # Start it up
 docker compose up --build -d
